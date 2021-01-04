@@ -25,3 +25,4 @@ yarn-error.log*
 .eslintcache
 todo-react-app.code-workspace
 .idea
+.gitignore
