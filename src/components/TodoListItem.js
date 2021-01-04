@@ -5,13 +5,13 @@ import React from 'react';
 // * на данный момент в этом объекте хранятся два свойства: label и important
 // * используем деструктуризацию, чтобы получить эти свойства
 const TodoListItem = ({ label, important = false }) => {
-	const style = {
-		color: important ? 'tomato' : 'black'
-	};
+  const style = {
+    color: important ? 'tomato' : 'black'
+  };
 
-	return (
-		<span style={ style }>{ label }</span>
-	);
+  return (
+    <span style={ style }>{ label }</span>
+  );
 };
 
 export default TodoListItem;
