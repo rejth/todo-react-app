@@ -4,7 +4,7 @@ import React from 'react';
 // * традиционное именование этого объекта - props
 // * на данный момент в этом объекте хранятся два свойства: label и important
 // * используем деструктуризацию, чтобы получить эти свойства
-const TodoListItem = ({ label , important = false }) => {
+const TodoListItem = ({ label, important = false }) => {
 	const style = {
 		color: important ? 'tomato' : 'black'
 	};

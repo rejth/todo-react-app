@@ -11,16 +11,16 @@ const App = () => {
 		{ label: 'Have a lunch', important: false },
 		{ label: 'Build React App', important: true },
 	];
-// * react-компонент - это функция, которая всегда возвращает (создает) html-шаблон
+	// * react-компонент - это функция, которая всегда возвращает (создает) html-шаблон
 	return (
-// * обращение к компоненту в JSX превращается эквивалентно вызову метода React.createElement()
+	// * обращение к компоненту в JSX превращается эквивалентно вызову метода React.createElement()
 		<div>
 			<AppHeader/>
 			<SearchPanel/>
 			<TodoList todos={ todoData }/>
 		</div>
 	);
-}
+};
 
 // * первый аргумент метода ReactDom.render() принимает исключительно react-элемент
 // * чтобы сделать react-элемент из компонента нужно прописать <.../>
