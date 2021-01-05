@@ -1,5 +1,6 @@
 import React from 'react';
-import './TodoListItem.css'
+import PropTypes from 'prop-types';
+import './TodoListItem.css';
 
 // * для React первый аргумент функции-компонента - это объект со свойствами элемента
 // * традиционное именование этого объекта - props
@@ -13,6 +14,11 @@ const TodoListItem = ({ label, important = false }) => {
   return (
     <span className="todo-list-item" style={ style }>{ label }</span>
   );
+};
+
+TodoListItem.propTypes = {
+  label: PropTypes.string.isRequired,
+  important: PropTypes.boolean
 };
 
 export default TodoListItem;

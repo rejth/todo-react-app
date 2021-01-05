@@ -1,11 +1,12 @@
 import React from 'react';
-import TodoListItem from '../TodoListItem/TodoListItem'
+import PropTypes from 'prop-types';
+import TodoListItem from '../TodoListItem/TodoListItem';
 import './TodoList.css';
 
 const TodoList = ({ todos }) => {
   const elements = todos.map(item => {
     // * деструктуризация объекта item. в переменну id - id из item, в переменную itemProps - все остальные переменные
-    const { id, ...itemProps } = item
+    const { id, ...itemProps } = item;
     // * используем spread-оператор, чтобы передать в компонент новые переменные (свойства)
     // * имена создаваемых свойств элемента и имена свойств объекта item одинаковые
     // * поэтому в данном случаем удобно использовать spread-оператор
@@ -15,7 +16,7 @@ const TodoList = ({ todos }) => {
       <li className="list-group-item" key={ id }>
         <TodoListItem { ...itemProps }/>
       </li>
-    )
+    );
   });
 
   // * передаем в список ul массив JSX элементов elements
@@ -24,6 +25,10 @@ const TodoList = ({ todos }) => {
       { elements }
     </ul>
   );
+};
+
+TodoList.propTypes = {
+  todos: PropTypes.array.isRequired
 };
 
 export default TodoList;

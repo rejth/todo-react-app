@@ -1,5 +1,5 @@
 import React from 'react';
-import './SearchPanel.css'
+import './SearchPanel.css';
 
 const SearchPanel = () => (
   <input placeholder="type to search"/>
