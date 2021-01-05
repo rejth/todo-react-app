@@ -1,4 +1,5 @@
 import React from 'react';
+import './TodoListItem.css'
 
 // * для React первый аргумент функции-компонента - это объект со свойствами элемента
 // * традиционное именование этого объекта - props
@@ -10,7 +11,7 @@ const TodoListItem = ({ label, important = false }) => {
   };
 
   return (
-    <span style={ style }>{ label }</span>
+    <span className="todo-list-item" style={ style }>{ label }</span>
   );
 };
 
