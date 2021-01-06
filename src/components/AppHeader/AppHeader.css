@@ -5,6 +5,7 @@
 
 .app-header h1 {
   flex-grow: 1;
+  font-family: HK Grotesk Bold, sans-serif;
 }
 
 .app-header h2 {

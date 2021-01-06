@@ -9,7 +9,7 @@ const App = () => {
   const todoData = [
     { label: 'Drink Coffee', important: false, id: 1 },
     { label: 'Have a lunch', important: false, id: 2 },
-    { label: 'Build React App', important: true, id: 3 },
+    { label: 'Build Awesome React App', important: true, id: 3 },
   ];
   // * react-компонент - это функция, которая всегда возвращает (создает) html-шаблон
   return (
