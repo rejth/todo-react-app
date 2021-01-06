@@ -4,4 +4,4 @@ import App from './components/App/App';
 
 // * первый аргумент метода ReactDom.render() принимает исключительно react-элемент
 // * чтобы сделать react-элемент из компонента нужно прописать <.../>
-ReactDom.render(<App/>, document.getElementById('root'));
+ReactDom.render(<App/>, document.querySelector('.root'));
