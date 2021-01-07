@@ -1,3 +1,3 @@
 # To-Do List React App
 
-Приложение "Список дел" на React
+Приложение "To-Do List" на React
