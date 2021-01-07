@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import './TodoListItem.css';
 
 // в React первый аргумент компонента-класса - это объект со свойствами (атрибутами), передаваемыми в react-элемент
 // традиционное именование этого объекта - props (properties)
 // описание компонентов через классы, а не через функции позвляет хранить и обновлять внутренее состояние компонента
-export default class TodoListItem extends React.Component {
+export default class TodoListItem extends Component {
   // внутреннее состояние компонента
   state = {
     done: false,

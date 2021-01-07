@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './ItemStatusFilter.css';
 
-export default class ItemStatusFilter extends React.Component {
+export default class ItemStatusFilter extends Component {
   render() {
     return (
       <div className="buttons btn-group" role="group">
