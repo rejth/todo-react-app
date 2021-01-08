@@ -14,7 +14,10 @@ const TodoList = ({ todos, onDeleted }) => {
     // для чистоты кода передаем в TodoListItem только те свойства, которые используются компонентом
     return (
       <li className="list-group-item" key={ id }>
-        <TodoListItem { ...itemProps } onDeleted={() => onDeleted(id)}/>
+        <TodoListItem
+          { ...itemProps }
+          onDeleted={ () => onDeleted(id) }
+        />
       </li>
     );
   });
