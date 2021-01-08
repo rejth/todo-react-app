@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import TodoListItem from '../TodoListItem/TodoListItem';
 import './TodoList.css';
 
-const TodoList = ({ todos, onDeleted }) => {
+const TodoList = ({ todos, onDeleted, onToggleImportant, onToggleDone }) => {
   const elements = todos.map(item => {
     // деструктуризация объекта item. в переменну id - id из item, в переменную itemProps - все остальные переменные
     const { id, ...itemProps } = item;
@@ -17,6 +17,8 @@ const TodoList = ({ todos, onDeleted }) => {
         <TodoListItem
           { ...itemProps }
           onDeleted={ () => onDeleted(id) }
+          onToggleImportant={ () => onToggleImportant(id) }
+          onToggleDone={ () => onToggleDone(id) }
         />
       </li>
     );
@@ -32,7 +34,9 @@ const TodoList = ({ todos, onDeleted }) => {
 
 TodoList.propTypes = {
   todos: PropTypes.array.isRequired,
-  onDeleted: PropTypes.func
+  onDeleted: PropTypes.func,
+  onToggleImportant: PropTypes.func,
+  onToggleDone: PropTypes.func
 };
 
 export default TodoList;

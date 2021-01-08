@@ -6,29 +6,10 @@ import './TodoListItem.css';
 // традиционное именование этого объекта - props (properties)
 // описание компонентов через классы, а не через функции позвляет хранить и обновлять внутренее состояние компонента
 export default class TodoListItem extends Component {
-  // внутреннее состояние компонента
-  state = {
-    done: false,
-    important: false
-  };
-
-  onLabelClick = () => {
-    // setState работает асинхронно!
-    // если текущее состояние компонента зависит от предыдущего, нужно передавать в функцию аргумент state для
-    // получения актуального на момент вызова функции состояния,
-    // иначе можно передавать в stateState просто объект
-    this.setState(state => ({ done: !state.done }));
-  };
-
-  onMarkImportant = () => {
-    this.setState(state => ({ important: !state.important }));
-  };
-
   // метод render(), наследуемый от класса React.Component, возвращает react-элемент (как в функциональном компоненте)
   render() {
     // деструктуризация используется, чтобы получить свойства из объекта props
-    const { label, onDeleted } = this.props;
-    const { done, important } = this.state;
+    const { label, onDeleted, onToggleImportant, onToggleDone, done, important } = this.props;
     const style = {
       color: important ? 'steelblue' : 'black',
       fontWeight: important ? 'bold' : 'normal'
@@ -49,13 +30,13 @@ export default class TodoListItem extends Component {
         <span
           className="todo-list-item-label"
           style={ style }
-          onClick={ this.onLabelClick }>
+          onClick={ onToggleDone }>
           { label }
         </span>
         <button
           type="button"
           className="btn btn-outline-success btn-sm float-right"
-          onClick={ this.onMarkImportant }>
+          onClick={ onToggleImportant }>
           <i className="fa fa-exclamation"></i>
         </button>
         <button
@@ -71,6 +52,9 @@ export default class TodoListItem extends Component {
 
 TodoListItem.propTypes = {
   label: PropTypes.string.isRequired,
+  done: PropTypes.bool,
   important: PropTypes.bool,
-  onDeleted: PropTypes.func
+  onDeleted: PropTypes.func,
+  onToggleImportant: PropTypes.func,
+  onToggleDone: PropTypes.func
 };
