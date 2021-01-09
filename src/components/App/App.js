@@ -18,8 +18,10 @@ export default class App extends Component {
       this.createTodoItem('Have a lunch'),
       this.createTodoItem('Build Awesome React App')
     ],
-    // строка для поиска в массиве задач
-    term: ''
+    // строка для поиска задач
+    term: '',
+    // фильтр по статусу задачи
+    filter: 'all'
   };
 
   // Создание новой задачи в массиве данных todoData в app state
@@ -100,12 +102,24 @@ export default class App extends Component {
       item.label.toLowerCase().indexOf(term.toLowerCase()) > -1);
   };
 
+  // Обновление свойства фильтрации filter в app state
+  onFilterChange = filter => { this.setState({ filter }); }
+
+  // Фильтрация по статусу задачи
+  filterData = (todoData, filter) => {
+    switch (filter) {
+    case 'all': return todoData;
+    case 'active': return todoData.filter(item => !item.done);
+    case 'done': return todoData.filter(item => item.done);
+    }
+  }
+
   // render()- это функция компонента-класса, которая всегда возвращает (создает) html-элемент
   render() {
-    const { todoData, term } = this.state;
-    // найденные в результате поиска задачи
-    const searchedData = this.searchData(todoData, term);
-    // количество сделанных задач
+    const { todoData, term, filter } = this.state;
+    //задачи, отфильтрованные по статусу в результате поиска
+    const searchedData = this.filterData(this.searchData(todoData, term), filter);
+    // количество завершенных задач
     const doneCount = todoData.filter(item => item.done).length;
     // количество активных задач
     const todoCount = todoData.length - doneCount;
@@ -118,10 +132,11 @@ export default class App extends Component {
           countDone={ doneCount}
         />
         <div className="top-panel d-flex">
-          <SearchPanel
-            onSearch={ this.onSearchChange }
+          <SearchPanel onSearch={ this.onSearchChange }/>
+          <ItemStatusFilter
+            filter={filter}
+            onFilter={ this.onFilterChange }
           />
-          <ItemStatusFilter/>
         </div>
         <TodoList
           todos={ searchedData }
@@ -129,9 +144,7 @@ export default class App extends Component {
           onToggleImportant={ this.toggleImportant }
           onToggleDone={ this.toggleDone }
         />
-        <AddTodoItemForm
-          onAdded={ this.addItem }
-        />
+        <AddTodoItemForm onAdded={ this.addItem }/>
       </div>
     );
   }
