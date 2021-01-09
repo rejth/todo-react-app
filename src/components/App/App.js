@@ -96,7 +96,8 @@ export default class App extends Component {
     if (term.length === 0) {
       return todoData;
     }
-    return todoData.filter(item => item.label.indexOf(term) > -1);
+    return todoData.filter(item =>
+      item.label.toLowerCase().indexOf(term.toLowerCase()) > -1);
   };
 
   // render()- это функция компонента-класса, которая всегда возвращает (создает) html-элемент
