@@ -4,13 +4,15 @@ import TodoListItem from '../TodoListItem/TodoListItem';
 import './TodoList.css';
 
 const TodoList = ({ todos, onDeleted, onToggleImportant, onToggleDone }) => {
+  // создаем массив JSX-элементов на основе массива данных todoData
   const elements = todos.map(item => {
-    // деструктуризация объекта item. в переменну id - id из item, в переменную itemProps - все остальные переменные
+    // деструктуризация объекта item (задача).
+    // в переменну id - свойство id из item, в переменную itemProps - все остальные свойства
     const { id, ...itemProps } = item;
     // используем spread-оператор, чтобы передать в компонент новые переменные (свойства)
-    // имена создаваемых свойств элемента и имена свойств объекта item одинаковые
+    // имена создаваемых свойств элемента и имена свойств объекта item одинаковые,
     // поэтому в данном случаем удобно использовать spread-оператор
-    // для каждого элемента списка вводим уникальный id для оптимизации работы React
+    // для каждого элемента списка вводим уникальный id для оптимизации скорости работы React
     // для чистоты кода передаем в TodoListItem только те свойства, которые используются компонентом
     return (
       <li className="list-group-item" key={ id }>
@@ -24,7 +26,7 @@ const TodoList = ({ todos, onDeleted, onToggleImportant, onToggleDone }) => {
     );
   });
 
-  // * передаем в список ul массив JSX элементов elements
+  // передаем в список ul массив JSX элементов elements
   return (
     <ul className="list-group todo-list">
       { elements }

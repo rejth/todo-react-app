@@ -1,0 +1,7 @@
+App -> app data (global app state)
+    AppHeader (header)
+    SearchPanel (search input)
+    ItemStatusFilter (tabs)
+    TodoList (list)
+        TodoListItem (list element + add/delete buttons)
+    AddTodoItemForm (submit form with text input and button) -> app data (form state)

@@ -5,19 +5,24 @@ import SearchPanel from '../SearchPanel/SearchPanel';
 import ItemStatusFilter from '../ItemStatusFilter/ItemStatusFilter';
 import AddTodoItemForm from '../AddTodoItemForm/AddTodoItemForm';
 
-// имя компонента должно быть с заглавной буквы, иначе Babel не поймет, что создается кастомный компонент
+// Имя react-компонента должно быть с заглавной буквы, иначе Babel не поймет, что создается кастомный компонент
 export default class App extends Component {
+  // уникальный id задачи
   initId = 0;
 
-  // внутренее состояние компонента
+  // Внутренее состояние компонента App
   state = {
+    // массив задач
     todoData: [
       this.createTodoItem('Drink Coffee'),
       this.createTodoItem('Have a lunch'),
       this.createTodoItem('Build Awesome React App')
-    ]
+    ],
+    // строка для поиска в массиве задач
+    term: ''
   };
 
+  // Создание новой задачи в массиве данных todoData в app state
   createTodoItem(label) {
     return {
       label,
@@ -27,6 +32,7 @@ export default class App extends Component {
     };
   }
 
+  // Удаление задачи из app state
   deleteItem = id => {
     // setState работает асинхронно!
     // если текущее состояние компонента зависит от предыдущего, нужно передавать в функцию аргумент state для
@@ -43,6 +49,7 @@ export default class App extends Component {
     });
   }
 
+  // Добавление новой задачи в app state
   addItem = text => {
     this.setState(({ todoData }) => {
       const newItem = this.createTodoItem(text);
@@ -52,9 +59,13 @@ export default class App extends Component {
     });
   }
 
+  // Создание нового массива данных todoData
   toggleTodoProperty = (arr, id, property) => {
+    // индекс выбранной задачи в массиве todoData
     const selectedItemId = arr.findIndex(item => item.id === id);
+    // выбранная задача
     const oldItem = arr[selectedItemId];
+    // новая задача с обновленными свойствами done или important
     const newItem = { ...oldItem, [property]: !oldItem[property] };
     return [
       ...arr.slice(0, selectedItemId),
@@ -63,36 +74,56 @@ export default class App extends Component {
     ];
   }
 
+  // Обновление свойства important задачи в app state
   toggleImportant = id => {
     this.setState(({ todoData }) => ({
       todoData: this.toggleTodoProperty(todoData, id, 'important')
     }));
   }
 
+  // Обновление свойства done задачи в app state
   toggleDone = id => {
     this.setState(({ todoData }) => ({
       todoData: this.toggleTodoProperty(todoData, id, 'done')
     }));
   }
 
-  // render()- это функция, которая всегда возвращает (создает) JSX-элемент
+  // Обновление свойства поиска term в app state
+  onSearchChange = term => { this.setState({ term }); }
+
+  // Поиск задач
+  searchData = (todoData, term) => {
+    if (term.length === 0) {
+      return todoData;
+    }
+    return todoData.filter(item => item.label.indexOf(term) > -1);
+  };
+
+  // render()- это функция компонента-класса, которая всегда возвращает (создает) html-элемент
   render() {
-    const { todoData } = this.state;
+    const { todoData, term } = this.state;
+    // найденные в результате поиска задачи
+    const searchedData = this.searchData(todoData, term);
+    // количество сделанных задач
     const doneCount = todoData.filter(item => item.done).length;
+    // количество активных задач
     const todoCount = todoData.length - doneCount;
     return (
-      // обращение к компоненту в JSX эквивалентно вызову метода React.createElement()
+      // обращение к react-элементу в JSX эквивалентно вызову метода React.createElement()
+      // в react-элемент можно передавать свойства
       <div className="todo-app">
         <AppHeader
           countTodo={ todoCount }
           countDone={ doneCount}
         />
         <div className="top-panel d-flex">
-          <SearchPanel/>
+          <SearchPanel
+            onSearch={ this.onSearchChange }
+          />
           <ItemStatusFilter/>
         </div>
         <TodoList
-          todos={ this.state.todoData }
+          todos={ searchedData }
           onDeleted={ this.deleteItem }
           onToggleImportant={ this.toggleImportant }
           onToggleDone={ this.toggleDone }

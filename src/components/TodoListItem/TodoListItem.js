@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import './TodoListItem.css';
 
-// в React первый аргумент компонента-класса - это объект со свойствами (атрибутами), передаваемыми в react-элемент
+// в React первый аргумент компонента-функции - это объект со свойствами, передаваемыми в react-элемент
+// в компоненте-классе передаваемые свойства можно получить аналогично через деструктуризацию
 // традиционное именование этого объекта - props (properties)
 // описание компонентов через классы, а не через функции позвляет хранить и обновлять внутренее состояние компонента
 export default class TodoListItem extends Component {
@@ -10,6 +11,7 @@ export default class TodoListItem extends Component {
   render() {
     // деструктуризация используется, чтобы получить свойства из объекта props
     const { label, onDeleted, onToggleImportant, onToggleDone, done, important } = this.props;
+    // стили оформления задачи
     const style = {
       color: important ? 'steelblue' : 'black',
       fontWeight: important ? 'bold' : 'normal'
@@ -24,7 +26,7 @@ export default class TodoListItem extends Component {
       classNames += ' important';
     }
 
-    // создание react-элемента
+    // создание html-элемента
     return (
       <div className={ classNames }>
         <span
