@@ -24,8 +24,8 @@ Prerequisites:
 To set up the app execute the following commands.
 
 ```bash
-git clone https://github.com/rejth/star-db.git
-cd star-db
+git clone https://github.com/rejth/todo-react-app.git
+cd todo-react-app
 npm install
 ```
 
