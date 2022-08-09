@@ -6,12 +6,12 @@ It's for React learning purpose.
 
 ## Demo: [click](https://rejth.github.io/todo-react-app/)
 
-## 🛠 Fronend:
+## 🧱 Fronend:
   * React + Class components
   * ES6+
   * CSS
   
-## 🛠 Deployment:
+## 🌐 Deployment:
   * GitHub Pages
 
 ## Get Started
